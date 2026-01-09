@@ -1,0 +1,90 @@
+{
+  "name": "001_Workflow_ChatAgent",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Hi there! 👋\nMy name is Test Agent. How can I assist you today?",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -320,
+        16
+      ],
+      "id": "e21ac2b1-2ed1-4209-83f1-d5df613b24b4",
+      "name": "When chat message received",
+      "webhookId": "091f296d-a072-429c-a0d9-9ed1f3954521"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -112,
+        16
+      ],
+      "id": "6389be11-4aa9-494c-8ca2-4a5c29d0d511",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        224
+      ],
+      "id": "b6ed0953-db36-4863-82f0-493107d026fc",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "0zjukfOH7vJcVQ4r",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "availableInMCP": false
+  },
+  "versionId": "981cd628-d46f-4c38-87ab-f01a96d7cb58",
+  "meta": {
+    "templateId": "ready-to-run-ai-workflow",
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a1fa7874d1fbcc2e33b4e6274ce7eea2f5ba345995d4596343a5cdbf8156831a"
+  },
+  "id": "OK91ZStKVOfXsuKJ",
+  "tags": []
+}
